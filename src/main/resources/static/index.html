@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-Wj/aB7HgVBPOf0o9eRlgjzHIo7PZlN25krj7syNw6w/lV6dDS/p6/1O9KzrHe69QZxbj8hnv57SOZ4NUJ4CGw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+</head>
+<body>
+<div id="app" class="text-center">
+  <div class="header">
+    <h1>My Todo-List</h1>
+  </div>
+
+  <!-- if the user is authenticated, they can access their todos saved in the db -->
+  <div v-if="authenticated">
+    <div class="newItemContainer">
+      <button v-on:click="insertNew = !insertNew" class="newTodo"><span><i style='font-size: 26px' class='fas'>&#xf044;</i></span></button>
+      <input type="checkbox" v-model="hideOrShow" class="completedCheck">
+    </div>
+
+    <!-- this is the form to accept user input -->
+      <form v-on:submit.prevent="addTodo" v-if="insertNew" class="newItemForm">
+        <input v-model="newTodo" class="input" placeholder="Input todo item.." v-on:keyup.enter="addTodo">
+      </form>
+
+      <!-- after the user inputs, the items are added to a list -->
+    <ul>
+      <li v-for="t in singlePage" v-bind:key="t.id" v-bind:class="{'completed':t.completed }" >
+        <div>
+
+          <div v-if="toUpdateId!== t.id" class="singleTodo">
+
+            <!-- this toggles state of completion from done to undone based on clicks -->
+            <input type="checkbox" v-bind:id="'t-' + t.id" class="checkedTodobox" v-bind:checked="t.completed" v-on:change="toggleCompletion(t.id)">
+            <label class="t-content" v-bind:for="'t-'+ t.id">{{ t.content }}</label>
+            <div class="singleTodo-right">
+              <!-- I have used icons here for updating and deleting items -->
+              <span v-on:click="editTodo(t.id)" class="edit-todo"><i class="far fa-edit"></i></span>
+              <span class="delete-todo" v-on:click="deleteTodo(t.id)"><i class="fas fa-trash-alt"></i></span>
+            </div>
+          </div>
+
+          <!-- this handles the update of the todo item as a single unit with update or cancel options available -->
+          <div class="singleTodo-update" v-if="toUpdateId === t.id">
+            <input class="updateInputbox" type="text" v-model="updatedText" v-on:keyup.enter="updateTodo"> <!-- item can update on enter or clicking update icon -->
+
+            <!-- calls the update and cancel function from sceipt.js file -->
+            <button class="updateTodo" v-on:click="updateTodo"><i class="material-icons" style="font-size:36px">update</i></button>
+            <button class="cancelTodosUpdate" v-on:click="cancelUpdate"><i class="material-icons" style="font-size:36px">cancel</i></button>
+          </div>
+        </div>
+      </li>      
+    </ul>
+
+    <!-- implements pagination to display the todos in a paginated manner -->
+    <div class="page">
+      <span v-for="p in totalPages" v-bind:key="page" v-bind:class="{'active':p=== activePage }">
+        <a href="#" v-on:click.prevent="activePage= p">{{ p }}</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- if the user isnt authenticated, upon running the app, they see login page -->
+  <div v-else>
+    <form v-on:submit.prevent="login">
+      <input class="username" v-model="username" placeholder="Name" type="text">
+      <input class="password" v-model="password" placeholder="Password" type="password">
+      <button class="submit" type="submit"><span class="glyphicon glyphicon-log-in"></span></button>
+    </form>
+  </div>
+</div>
+</body>
+<script src="script.js"></script>
+</html>

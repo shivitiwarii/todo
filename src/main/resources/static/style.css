@@ -1,0 +1,228 @@
+#app {
+  background-color: #8786cf;
+  max-width: 600px;
+  margin: 5px auto;
+  padding-bottom: 22px;
+}
+
+.header {
+  margin-bottom: 22px;
+  background-color: #6361be;
+  padding: 22px;
+  
+}
+
+.header h1 {
+  color: white;
+  font-size: 35px;
+  margin: 0;
+}
+
+.newItemContainer {
+  margin-bottom: 20px;
+  align-items: center;
+
+}
+
+.newTodo {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 22px;
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.newTodo span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.newItemForm {
+  margin-bottom: 20px;
+}
+
+.completedCheck {
+  appearance: none;
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  margin-left: 10px;
+  border: 3px solid #ffffff;
+  outline: none;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.completedCheck:checked::after {
+  content: '\2713'; 
+  font-size: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  outline: none;
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.singleTodo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px;
+  background-color: #083076;
+  border-radius: 6px;
+  margin-bottom: 9px;
+  width:80%;
+  margin : 9px auto;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 20px;
+  color: white;
+  order:1;
+}
+
+.singleTodo-left {
+  display: flex;
+  align-items: center;
+}
+
+.singleTodo-right {
+  display: flex;
+  align-items: center;
+}
+
+.delete-todo{
+  background-color: transparent; 
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 4px 8px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.completed {
+  opacity: 0.5;
+  text-decoration: line-through;
+  order: 2;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+}
+
+.page a{
+  cursor: pointer;
+  display: inline-block;
+  background-color: #6361be;;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  margin: 0 5px;
+  border-radius: 4px;
+
+}
+
+.checkedTodobox {
+  width: 27px;
+  height: 27px;
+  margin-left: 10px;
+  appearance: none;
+  border: 3px solid #f1a3c4;
+  border-radius: 60%;
+  outline: none;
+}
+
+.checkedTodobox:checked {
+  background-color: #f0abc8;
+}
+
+.username{
+  font-size: 16px;
+  color: rgb(124, 121, 121);
+  font-family: 'Noto Sans TC', sans-serif;
+  margin: 0;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.password{
+  font-size: 16px;
+  border-radius: 5px;
+  color: rgb(124, 121, 121);
+  font-family: 'Noto Sans TC', sans-serif;
+  margin: 0;
+  margin-right: 10px;
+ 
+}
+
+.submit{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+}
+
+.input{
+  background-color: transparent;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: 17px;
+  border-bottom: 2px solid #f1a3c4; 
+}
+
+.updateInputbox{
+  color:#c86b93;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.updateTodo{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.cancelTodosUpdate{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.singleTodo-update{
+
+  color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px;
+    background-color: #083076;
+    border-radius: 6px;
+    margin-bottom: 9px;
+    width:80%;
+    margin : 9px auto;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 20px;
+
+  }
